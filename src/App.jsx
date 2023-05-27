@@ -1,3 +1,4 @@
+import { useEffect } from 'react'
 import './App.css'
 import Heater1 from './audio/Heater-1.mp3'
 import Heater2 from './audio/Heater-2.mp3'
@@ -11,18 +12,20 @@ import ClosedHH from './audio/Closed-HH.mp3'
 
 function App () {
   const playSound = (soundId) => {
-    console.log(soundId)
     const audio = document.getElementById(soundId)
-    console.log(audio)
     if (audio !== null) {
       audio.play()
     }
   }
 
+  useEffect(() => {
+    document.body.addEventListener('keydown', (e) => playSound(e.key.toUpperCase()))
+  }, [])
+
   return (
     <>
-      <div id='drum-machine' className='d-flex justify-content-center align-items-center h-100' tabIndex={-1} onKeyDown={(e) => playSound(e.key.toUpperCase())}>
-        <div id='display' className='d-flex'>
+      <div id='drum-machine' className='d-flex justify-content-center align-items-center h-100'>
+        <div className='d-flex'>
           <div id='pad-bank'>
             <button className='drum-pad' id='Heater-1' onClick={() => playSound('Q')}>
               Q
@@ -62,7 +65,7 @@ function App () {
             </button>
           </div>
           <div id='controls'>
-            controls
+            <p id='display'> </p>
           </div>
         </div>
       </div>

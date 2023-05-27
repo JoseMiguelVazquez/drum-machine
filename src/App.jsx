@@ -11,14 +11,17 @@ import ClosedHH from './audio/Closed-HH.mp3'
 
 function App () {
   const playSound = (soundId) => {
+    console.log(soundId)
     const audio = document.getElementById(soundId)
     console.log(audio)
-    audio.play()
+    if (audio !== null) {
+      audio.play()
+    }
   }
 
   return (
     <>
-      <div id='drum-machine' className='d-flex justify-content-center align-items-center'>
+      <div id='drum-machine' className='d-flex justify-content-center align-items-center h-100' tabIndex={-1} onKeyDown={(e) => playSound(e.key.toUpperCase())}>
         <div id='display' className='d-flex'>
           <div id='pad-bank'>
             <button className='drum-pad' id='Heater-1' onClick={() => playSound('Q')}>

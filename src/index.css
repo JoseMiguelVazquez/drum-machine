@@ -1,7 +1,60 @@
 body {
     height: 100vh;
+    width: 100vw;
+    background-color: #DDE6ED;
 }
 
 #root {
     height: 100%;
+    width: 100%;
+}
+
+.general-title {
+    color: #27374D;
+    font-size: 2.5rem;
+}
+
+#drum-machine-container {
+    width: 100%;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: #9DB2BF;
+}
+
+#pad-bank {
+    width: 400px;
+}
+
+.btn-custom {
+    width: 100px;
+    height: 100px;
+}
+
+.btn-custom, #display {
+    background-color: #526D82;
+    font-size: 1.5rem;
+    color: white;
+}
+
+.btn-custom:hover {
+    background-color: #628199;
+    color: white;
+}
+
+#flexSwitchCheckChecked {
+    background-color: #27374D;
+}
+
+#display {
+    width: 200px;
+    height: 50px;
+}
+
+
+@media screen and (min-width: 700px) {
+    #drum-machine-container {
+        width: 660px;
+        flex-direction: row;
+    }
 }

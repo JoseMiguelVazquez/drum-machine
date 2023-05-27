@@ -26,10 +26,40 @@ function App () {
     { btnId: 'Closed-HH', keyboardKey: 'C', soundSource: ClosedHH }
   ]
 
-  const playSound = (soundKey, btnId) => {
+  const playSound = (soundKey) => {
     const audio = document.getElementById(soundKey)
     if (audio !== null) {
-      setCurrentSound(btnId)
+      let soundName = ''
+      switch (soundKey) {
+        case 'Q':
+          soundName = 'Heater-1'
+          break
+        case 'W':
+          soundName = 'Heater-2'
+          break
+        case 'E':
+          soundName = 'Heater-3'
+          break
+        case 'A':
+          soundName = 'Heater-4'
+          break
+        case 'S':
+          soundName = 'Clap'
+          break
+        case 'D':
+          soundName = 'Open-HH'
+          break
+        case 'Z':
+          soundName = 'Kick-n-Hat'
+          break
+        case 'X':
+          soundName = 'Kick'
+          break
+        case 'C':
+          soundName = 'Closed-HH'
+          break
+      }
+      setCurrentSound(soundName)
       audio.play()
     }
   }
@@ -57,7 +87,7 @@ function App () {
           <div id='controls' className='d-flex flex-column align-items-center justify-content-center py-4'>
             <div className='form-check form-switch d-flex flex-column align-items-center p-0 mb-3'>
               <label className='form-check-label p-0 m-0' htmlFor='flexSwitchCheckChecked'>Power</label>
-              <input className='form-check-input p-0 m-0' type='checkbox' role='switch' id='flexSwitchCheckChecked' checked />
+              <input className='form-check-input p-0 m-0' type='checkbox' role='switch' id='flexSwitchCheckChecked' defaultChecked />
             </div>
             <p id='display' className='d-flex align-items-center justify-content-center m-0 rounded'>{currentSound}</p>
           </div>

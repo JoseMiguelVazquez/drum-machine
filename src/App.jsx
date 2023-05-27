@@ -9,8 +9,21 @@ import OpenHH from './audio/Open-HH.mp3'
 import KicknHat from './audio/Kick-n-Hat.mp3'
 import Kick from './audio/Kick.mp3'
 import ClosedHH from './audio/Closed-HH.mp3'
+import DrumPad from './components/DrumPad'
 
 function App () {
+  const padBankInfo = [
+    { btnId: 'Heater-1', keyboardKey: 'Q', soundSource: Heater1 },
+    { btnId: 'Heater-2', keyboardKey: 'W', soundSource: Heater2 },
+    { btnId: 'Heater-3', keyboardKey: 'E', soundSource: Heater3 },
+    { btnId: 'Heater-4', keyboardKey: 'A', soundSource: Heater4 },
+    { btnId: 'Clap', keyboardKey: 'S', soundSource: Clap },
+    { btnId: 'Open-HH', keyboardKey: 'D', soundSource: OpenHH },
+    { btnId: 'Kick-n-Hat', keyboardKey: 'Z', soundSource: KicknHat },
+    { btnId: 'Kick', keyboardKey: 'X', soundSource: Kick },
+    { btnId: 'Closed-HH', keyboardKey: 'C', soundSource: ClosedHH }
+  ]
+
   const playSound = (soundId) => {
     const audio = document.getElementById(soundId)
     if (audio !== null) {
@@ -27,42 +40,15 @@ function App () {
       <div id='drum-machine' className='d-flex justify-content-center align-items-center h-100'>
         <div className='d-flex'>
           <div id='pad-bank'>
-            <button className='drum-pad' id='Heater-1' onClick={() => playSound('Q')}>
-              Q
-              <audio src={Heater1} className='clip' id='Q' />
-            </button>
-            <button className='drum-pad' id='Heater-2' onClick={() => playSound('W')}>
-              W
-              <audio src={Heater2} className='clip' id='W' />
-            </button>
-            <button className='drum-pad' id='Heater-3' onClick={() => playSound('E')}>
-              E
-              <audio src={Heater3} className='clip' id='E' />
-            </button>
-            <button className='drum-pad' id='Heater-4' onClick={() => playSound('A')}>
-              A
-              <audio src={Heater4} className='clip' id='A' />
-            </button>
-            <button className='drum-pad' id='Clap' onClick={() => playSound('S')}>
-              S
-              <audio src={Clap} className='clip' id='S' />
-            </button>
-            <button className='drum-pad' id='Open-HH' onClick={() => playSound('D')}>
-              D
-              <audio src={OpenHH} className='clip' id='D' />
-            </button>
-            <button className='drum-pad' id='Kick-n-Hat' onClick={() => playSound('Z')}>
-              Z
-              <audio src={KicknHat} className='clip' id='Z' />
-            </button>
-            <button className='drum-pad' id='Kick' onClick={() => playSound('X')}>
-              X
-              <audio src={Kick} className='clip' id='X' />
-            </button>
-            <button className='drum-pad' id='Closed-HH' onClick={() => playSound('C')}>
-              C
-              <audio src={ClosedHH} className='clip' id='C' />
-            </button>
+            {padBankInfo.map(drumPad => (
+              <DrumPad
+                key={drumPad.keyboardKey}
+                btnId={drumPad.btnId}
+                keyboardKey={drumPad.keyboardKey}
+                soundSource={drumPad.soundSource}
+                handlePlaySound={playSound}
+              />
+            ))}
           </div>
           <div id='controls'>
             <p id='display'> </p>
